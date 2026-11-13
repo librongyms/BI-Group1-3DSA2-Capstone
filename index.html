@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>DataCo</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="DataCo online store and supply chain insights. BI capstone by 3DSA2 Group 1.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700;9..40,800;9..40,900&display=swap">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="topline"></div>
+<header class="nav pad">
+  <div class="wrap">
+    <a class="logo" href="#home">DataCo</a>
+    <nav class="links" aria-label="Main">
+      <a href="#home" data-nav="home">Home</a>
+      <a href="#deals" data-nav="deals">Deals</a>
+      <a href="#track" data-nav="track">Track order</a>
+      <a href="#insights" data-nav="insights" class="ins">Insights</a>
+    </nav>
+    <div class="search"><input id="q" type="search" placeholder="Search products" aria-label="Search products"></div>
+    <a class="cartbtn" href="#cart"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 4h2l2.4 11.2a2 2 0 0 0 2 1.6h7.7a2 2 0 0 0 2-1.5L21 8H6"/><circle cx="10" cy="20" r="1.4"/><circle cx="17" cy="20" r="1.4"/></svg><span id="cartLabel">Cart</span></a>
+  </div>
+</header>
+
+<main class="pad">
+<div class="wrap">
+
+<!-- HOME -->
+<section id="v-home">
+  <div class="hero">
+    <div class="l">
+      <span class="tag">Fan Shop Week</span>
+      <h1>10.10 SALE !</h1>
+      <p>Up to 10% off everything in the Fan Shop.</p>
+      <div class="btns"><a class="b-mint" href="#shop" data-dep="Fan Shop">Shop Fan Shop</a><a class="b-ghost" href="#shop" data-dep="All">Browse all</a></div>
+    </div>
+    <div class="r"><div><div class="big">−10%</div><div class="small">Kayaks, life vests, safes and more</div></div></div>
+  </div>
+  <div class="perks">
+    <div class="perk"><svg viewBox="0 0 40 30" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="1" y="5" width="24" height="17" rx="2"/><path d="M25 10h7l6 6v6H25z"/><circle cx="9" cy="25" r="3" fill="#fff"/><circle cx="31" cy="25" r="3" fill="#fff"/></svg><div><b>4 delivery options</b><span>Same Day to Standard Class</span></div></div>
+    <div class="perk"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="16" cy="16" r="14"/><path d="M2 16h28M16 2c4 4 6 9 6 14s-2 10-6 14c-4-4-6-9-6-14s2-10 6-14z"/></svg><div><b>Worldwide shipping</b><span id="perkShip">5 markets, 164 countries</span></div></div>
+    <div class="perk"><svg viewBox="0 0 40 30" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="1" y="3" width="38" height="24" rx="3"/><path d="M1 10h38"/><rect x="28" y="17" width="7" height="5" rx="1"/></svg><div><b>Pay your way</b><span>Debit, transfer, cash or online</span></div></div>
+  </div>
+  <div class="sechead"><h2 class="sec">Shop by department</h2><a href="#shop" data-dep="All">See all 11 departments</a></div>
+  <div class="deps" id="deps"></div>
+  <div class="sechead"><h2 class="sec">Best sellers</h2><span>Ranked by units sold</span></div>
+  <div class="grid4" id="best"></div>
+  <div class="panel">
+    <h2 class="sec">Delivery options</h2>
+    <p class="lead">Estimates are based on how long past orders actually took, not just the promised time.</p>
+    <div class="opts" id="opts"></div>
+  </div>
+</section>
+
+<!-- SHOP -->
+<section id="v-shop" hidden>
+  <h1 class="page">All products</h1>
+  <div class="chips" id="chips"></div>
+  <div class="grid4" id="plist"></div>
+</section>
+
+<!-- TRACK -->
+<section id="v-track" hidden>
+  <div class="track">
+    <h1 class="page">Track your order</h1>
+    <form class="trackform" id="trackForm">
+      <label for="ono">Order number<input id="ono" inputmode="numeric" placeholder="e.g. 77202" autocomplete="off"></label>
+      <button class="b-dark" type="submit">Track</button>
+    </form>
+    <div id="trackOut"></div>
+    <p class="try" id="tryLine">Try a past order: <button type="button" data-o="77202">77202</button><button type="button" data-o="75939">75939</button><button type="button" data-o="68000">68000</button><button type="button" data-o="2">2</button></p>
+  </div>
+</section>
+
+<!-- CART -->
+<section id="v-cart" hidden>
+  <h1 class="page">Your cart</h1>
+  <div id="cartOut"></div>
+</section>
+
+<!-- PLACED -->
+<section id="v-placed" hidden>
+  <div class="okcard"><span class="badge">ORDER PLACED</span><h2 id="thanks">THANKS!</h2><p class="small" id="thanksSub" style="margin:0"></p>
+    <div style="display:flex;gap:10px;flex-wrap:wrap"><a class="b-dark" id="trackThis" href="#track">Track this order</a><a class="b-line" href="#home">Back to home</a></div></div>
+</section>
+
+<!-- INSIGHTS: our Tableau dashboard, embedded from Tableau Public -->
+<section id="v-insights" hidden>
+  <h1 class="page">Insights</h1>
+  <div id="tableauBox"></div>
+</section>
+
+</div>
+</main>
+<footer class="pad"><div class="wrap"><span>DataCo · DSA4157 Business Intelligence Capstone · 3DSA2 Group 1</span><span>Data: DataCo Smart Supply Chain (Constante, 2019)</span></div></footer>
+<div class="tip" id="tip" hidden></div>
+<div class="toast" id="toast" hidden></div>
+
+<script src="assets/shop.js"></script>
+<script src="assets/product-images.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
